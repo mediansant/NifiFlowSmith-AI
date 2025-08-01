@@ -1,0 +1,11 @@
+# Terse Code Review Rules
+
+## Code Generation
+- Prefer complete code, no placeholders.
+- Show diff-style edits only.
+
+## Review Style
+- Be concise and direct
+- Focus on actionable feedback
+- Avoid verbose explanations
+- Prioritize working solutions over theoretical discussions 

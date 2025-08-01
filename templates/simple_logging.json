@@ -1,0 +1,34 @@
+{
+  "name": "Simple Logging Flow",
+  "description": "Generate data and log it",
+  "processors": [
+    {
+      "name": "generator",
+      "type": "org.apache.nifi.processors.standard.GenerateFlowFile",
+      "config": {
+        "properties": {
+          "File Size": "1KB",
+          "Batch Size": "1",
+          "Data Format": "Text"
+        },
+        "schedulingPeriod": "1 sec"
+      }
+    },
+    {
+      "name": "logger",
+      "type": "org.apache.nifi.processors.standard.LogAttribute",
+      "config": {
+        "properties": {
+          "Log Level": "INFO",
+          "Log Payload": "true"
+        }
+      }
+    }
+  ],
+  "connections": [
+    {
+      "source": "generator",
+      "target": "logger"
+    }
+  ]
+} 

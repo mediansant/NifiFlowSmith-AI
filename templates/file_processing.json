@@ -1,0 +1,48 @@
+{
+  "name": "File Processing Flow",
+  "description": "Read from file, transform data, and write to output file",
+  "processors": [
+    {
+      "name": "file_reader",
+      "type": "org.apache.nifi.processors.standard.GetFile",
+      "config": {
+        "properties": {
+          "Input Directory": "/tmp/input",
+          "File Filter": ".*\\.txt$",
+          "Recurse Subdirectories": "true"
+        },
+        "schedulingPeriod": "1 sec"
+      }
+    },
+    {
+      "name": "transformer",
+      "type": "org.apache.nifi.processors.standard.ReplaceText",
+      "config": {
+        "properties": {
+          "Replacement Value": "processed",
+          "Search Value": "original"
+        }
+      }
+    },
+    {
+      "name": "file_writer",
+      "type": "org.apache.nifi.processors.standard.PutFile",
+      "config": {
+        "properties": {
+          "Directory": "/tmp/output",
+          "Conflict Resolution Strategy": "replace"
+        }
+      }
+    }
+  ],
+  "connections": [
+    {
+      "source": "file_reader",
+      "target": "transformer"
+    },
+    {
+      "source": "transformer",
+      "target": "file_writer"
+    }
+  ]
+} 

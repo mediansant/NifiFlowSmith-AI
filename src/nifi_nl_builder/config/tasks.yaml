@@ -1,0 +1,19 @@
+parse_req:
+  description: "Parse the natural language description into structured FlowRequirement with source_type, transforms, and destination_type"
+  expected_output: "YAML with source_type, transforms[], destination_type"
+  agent: nl_parser
+
+plan_templates:
+  description: "Choose best NiFi templates based on the parsed requirements"
+  expected_output: "List of template IDs with justification"
+  agent: flow_planner
+
+build_json:
+  description: "Create NiFi flow by POSTing to /process-groups/root/process-groups and child endpoints to assemble processors and connections"
+  expected_output: "flow_definition.json path"
+  agent: flow_builder
+
+deploy_flow:
+  description: "Deploy the created flow using CDP CLI create-deployment command"
+  expected_output: "Deployment CRN"
+  agent: cdf_deployer 

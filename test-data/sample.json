@@ -1,0 +1,3 @@
+{"id": 1, "name": "Test User", "email": "test@example.com", "status": "active"}
+{"id": 2, "name": "Another User", "email": "another@example.com", "status": "inactive"}
+{"id": 3, "name": "Third User", "email": "third@example.com", "status": "active"}
